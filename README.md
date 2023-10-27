@@ -13,7 +13,7 @@ A  Repository for all your recipies. Add all your favorite recipes to your cookb
 * user : recipe (1:M)
 * recipes : ingredients (M:N)
 
-![ERD](assets/RR-ERD.png)
+![ERD](assets/ERD.drawio.png)
 
 ## Restful Routing Chart
 | HTTP METHOD (_Verb_) | URL (_Nouns_)                                | CRUD   | Response                                                  | Notes                        |

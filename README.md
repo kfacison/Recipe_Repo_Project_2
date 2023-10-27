@@ -13,6 +13,7 @@ A  Repository for all your recipies. Add all your favorite recipes to your cookb
 * user : recipe (1:M)
 * recipes : ingredients (M:N)
 
+![ERD](assets/RR-ERD.png)
 
 ## Restful Routing Chart
 | HTTP METHOD (_Verb_) | URL (_Nouns_)                                | CRUD   | Response                                                  | Notes                        |
@@ -34,7 +35,12 @@ A  Repository for all your recipies. Add all your favorite recipes to your cookb
 
 
 ## WireFrame
-
+![Landing/ Home Page](assets/Landing_HomePage.drawio.png)
+![All Recipes in Database View](assets/All-Recipes-in-Database-View.drawio.png)
+![Cookbook View](assets/Cookbook-View.drawio.png)
+![Recipe View](assets/Recipe-View.drawio.png)
+![Recipe Create/Update View](assets/Recipe-Create_Update-View.drawio.png)
+![Ingredient Create View](assets/Ingredient-Create-View.drawio.png)
 
 ## User Stories
 * As a user I want to signs in and out

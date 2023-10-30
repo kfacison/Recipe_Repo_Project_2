@@ -8,8 +8,11 @@
 </head>
 <body>
   <nav>
+    <a href="/">Home Page</a>
+    <a href="/recipes">All Recipes</a>
     <% if (user) { %>
       <a href="/logout">LOG OUT</a>
+      <a href="/users/<%= user._id %>"><img src="<%= user.avatar %>" alt="Your Cookbook" ></a>
     <% } else { %>
       <a href="/auth/google">LOG IN</a>
     <% } %>

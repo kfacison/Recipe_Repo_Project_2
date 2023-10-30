@@ -3,7 +3,5 @@ module.exports = {
 }
 
 function index(req, res) {
-  res.render("index", {
-    title: "Homepage"
-  });
+  res.render("index", {title: "Homepage"});
 }

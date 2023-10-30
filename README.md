@@ -16,9 +16,10 @@ A  Repository for all your recipies. Add all your favorite recipes to your cookb
 ![ERD](assets/ERD.drawio.png)
 
 ## Restful Routing Chart
-| HTTP METHOD (_Verb_) | URL (_Nouns_)           0                     | CRUD   | Response                                                  | Notes                        |
+| HTTP METHOD (_Verb_) | URL (_Nouns_)                                | CRUD   | Response                                                  | Notes                        |
 | -------------------- | -------------------------------------------- | ------ | --------------------------------------------------------- | ---------------------------- |
 | `users`              |                                              |        |                                                           |                              |
+| GET                  | /users/:userid                               | READ   | display user cookbook with userId                         |                              |
 | GET                  | /auth2callback                               | R/C    | login or add user to database after google oauth          |                              |
 | PUT/PATCH            | /users/:userId/recipes/:recipeId             | UPDATE | link recipe with recipeId to user with userId             | add recipe to cookbook       |
 | `recipes`            |                                              |        |                                                           |                              |

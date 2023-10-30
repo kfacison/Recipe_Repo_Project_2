@@ -1,0 +1,44 @@
+<%- include('../partials/header') %>
+
+<h2>Recipe is in the Oven</h2>
+
+<form action="/recipes" method="POST">
+    <select name="mealType">
+        <option value="Breakfast">Breakfast</option>
+        <option value="Lunch">Lunch</option>
+        <option value="Dinner">Dinner</option>
+        <option value="Snack">Snack</option>
+        <option value="Misc.">Misc.</option>
+    </select>
+    <select name="cuisineType">
+            <option value="Italian">Italian</option>
+            <option value="Mexican">Mexican</option>
+            <option value="Chinese">Chinese</option>
+            <option value="Indian">Indian</option>
+            <option value="Japanese">Japanese</option>
+            <option value="Thai">Thai</option>
+            <option value="French">French</option>
+            <option value="Greek">Greek</option>
+            <option value="Spanish">Spanish</option>
+            <option value="Korean">Korean</option>
+            <option value="Lebanese">Lebanese</option>
+            <option value="Vietnamese">Vietnamese</option>
+            <option value="Mediterranean">Mediterranean</option>
+            <option value="Brazilian">Brazilian</option>
+            <option value="German">German</option>
+            <option value="Turkish">Turkish</option>
+            <option value="Moroccan">Moroccan</option>
+            <option value="Peruvian">Peruvian</option>
+            <option value="Russian">Russian</option>
+            <option value="Caribbean">Caribbean</option>
+            <option value="American">American</option>
+            <option value="Misc.">Misc.</option>
+    </select>
+    <label for="cookTime">Time to Cook(mins)</label>
+    <input type="number" name="cookTime">
+    <label for="instruction">instruction(include Messurements here)</label>
+    <input type="text" name="instruction"> 
+    <button type="submit">ALL DONE</button>
+</form>
+
+<%- include('../partials/footer') %>

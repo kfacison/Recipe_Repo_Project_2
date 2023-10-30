@@ -3,6 +3,7 @@
 <h2>Recipe is in the Oven</h2>
 
 <form action="/recipes" method="POST">
+    <label for="mealType">Type of Meal</label>
     <select name="mealType">
         <option value="Breakfast">Breakfast</option>
         <option value="Lunch">Lunch</option>
@@ -10,6 +11,7 @@
         <option value="Snack">Snack</option>
         <option value="Misc.">Misc.</option>
     </select>
+    <label for="cuisineType">Type of Cuisine</label>
     <select name="cuisineType">
             <option value="Italian">Italian</option>
             <option value="Mexican">Mexican</option>
@@ -36,6 +38,10 @@
     </select>
     <label for="cookTime">Time to Cook(mins)</label>
     <input type="number" name="cookTime">
+
+    <label for="ingredientList">Ingredient List (use ", " to seperate items)</label>
+    <input type="text" name="ingredientList">
+
     <label for="instruction">instruction(include Messurements here)</label>
     <input type="text" name="instruction"> 
     <button type="submit">ALL DONE</button>

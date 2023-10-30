@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 const ingredient = require('./ingredient');
+const user = require('./user');
 const Schema = mongoose.Schema;
 
 const recipeSchema = new Schema({
+    title: String,
     mealType: {
         type: String,
         enum: ['Breakfast','Lunch','Dinner','Snack','Misc.']
@@ -16,7 +18,11 @@ const recipeSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'ingredient'
     },
-    instruction: String
+    instruction: String,
+    chef: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+    }
 }, {
     timestamps: true
 });

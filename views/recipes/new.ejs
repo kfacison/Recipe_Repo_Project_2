@@ -3,6 +3,9 @@
 <h2>Recipe is in the Oven</h2>
 
 <form action="/recipes" method="POST">
+    <label for="title">Title</label>
+    <input type="text" name="title">
+    
     <label for="mealType">Type of Meal</label>
     <select name="mealType">
         <option value="Breakfast">Breakfast</option>
@@ -11,6 +14,7 @@
         <option value="Snack">Snack</option>
         <option value="Misc.">Misc.</option>
     </select>
+    
     <label for="cuisineType">Type of Cuisine</label>
     <select name="cuisineType">
             <option value="Italian">Italian</option>

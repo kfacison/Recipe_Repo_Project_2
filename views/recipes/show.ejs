@@ -1,10 +1,35 @@
 <%- include('../partials/header') %>
 
-<h2>Your j Recipe</h2>
+<h2><%= recipe.title %></h2>
 
-
-<!-- <form action="/recipes/new" action="GET">
-    <button type="submit">Add a New Recipe</button>
-</form> -->
+<table>
+    <tbody>
+        <tr>
+            <th>Type of Meal</th>
+            <td><%= recipe.mealType %></td>
+        </tr>
+        <tr>
+            <th>Type of Cuisine</th>
+            <td><%= recipe.cuisineType %></td>
+        </tr>
+        <tr>
+            <th>Time to Cook</th>
+            <td><%= recipe.cookTime %> mins</td>
+        </tr>
+        <tr>
+            <th>Ingredient List</th>
+            <td><%= recipe.ingredientList %></td>
+        </tr>
+        <tr>
+            <th>Instruction</th>
+            <td><%= recipe.instruction %></td>
+        </tr>
+    </tbody>
+</table>
+<% if(user._id === recipe.chef){ %>
+    <form action="" action="GET">
+        <button type="submit">Edit Recipe</button>
+    </form>
+<% } %>
 
 <%- include('../partials/footer') %>

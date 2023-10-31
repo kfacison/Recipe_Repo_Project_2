@@ -10,7 +10,7 @@ module.exports = {
 
 async function index(req, res) {
     //return list of all recipes in database
-    const recipeList = await Recipe.find({}).populate('chef');
+    const recipeList = await Recipe.find({}).populate('chef', 'name');
     //render index page
     res.render("recipes/index", {title: "All Recipes" , recipeList});
 }
@@ -22,8 +22,9 @@ async function newRecipeForm(req, res){
 
 async function show(req, res){
     //finds the recipe with the id in the url
-    const recipe = await Recipe.findById(req.params.recipesId).populate('ingredientList');
+    const recipe = await Recipe.findById(req.params.recipesId).populate('ingredientList').populate('chef', 'name');
     //renders the show page
+    console.log(recipe);
     res.render('recipes/show', {title:"Recipe", recipe})
 }
 

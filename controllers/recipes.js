@@ -1,6 +1,6 @@
 const Recipe = require('../models/recipe');
 const Ingredient = require('../models/ingredient');
-const User= require('../models/user');
+const User = require('../models/user');
 
 module.exports = {
     index,
@@ -57,14 +57,17 @@ async function create(req, res){
                 break;
             }
         }
+        console.log('outside the emebeded for loop');
         const newIng = await Ingredient.create({name: req.body.ingredientList[j], foodCategory: 'Misc.'});
         finalList.push(newIng._id);
+        console.log("should not see this is ingredent is in database");
     }
     req.body.ingredientList = finalList;
     req.body.chef = req.user._id;
     const recipe = await Recipe.create(req.body);
     //add recipe to user cookbook
-    const userCookbook = await User.findById(req.user_id);
+    const userCookbook = await User.findById(req.user._id);
+    console.log(userCookbook);
     userCookbook.cookbook.push(recipe._id);
     await userCookbook.save();
     //redirects to the show page

@@ -7,7 +7,7 @@ module.exports = {
 
 async function userIndex(req, res) {
     //return list of all recipes in database
-    const Cookbook = await User.findById(req.params.id).populate('cookbook');
-    console.log(Cookbook);
-    res.render("users/index", {title: "Your Cookbook", Cookbook });
+    const UserInfo = await User.findById(req.user._id).populate('cookbook');
+    //console.log(UserInfo);
+    res.render("users/index", {title: "Your Cookbook", UserInfo });
 }

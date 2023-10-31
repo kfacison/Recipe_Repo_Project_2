@@ -11,7 +11,7 @@ const userSchema = new Schema({
   avatar: String,
   cookbook: [{
     type: Schema.Types.ObjectId,
-    ref: 'recpie'
+    ref: 'Recipe'
   }]
 }, {
   timestamps: true

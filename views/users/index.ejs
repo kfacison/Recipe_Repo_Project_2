@@ -10,15 +10,15 @@
             <th>Chef</th>
             <th>Link</th>
         </thead>
-        <% if(Cookbook){ %>
-        <% Cookbook.forEach(r => { %>
+        <% if(UserInfo){ %>
+        <% UserInfo.cookbook.forEach(r => { %>
             <tr>
                 <th><%= r.title %></th>
                 <td><%= r.cookTime %></td>
                 <td><%= r. chef.name %></td>
                 <td><a href="/recipes/<%= r._id %>">Details</a></td>
             </tr>
-            <% }); }%>
+            <% }); } %>
     </tbody>
 </table>
 <br>

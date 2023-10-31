@@ -11,7 +11,7 @@ module.exports = {
 async function index(req, res) {
     //return list of all recipes in database
     const recipeList = await Recipe.find({}).populate('chef');
-    //console.log(recipeList);
+    //render index page
     res.render("recipes/index", {title: "All Recipes" , recipeList});
 }
 
@@ -21,9 +21,9 @@ async function newRecipeForm(req, res){
 }
 
 async function show(req, res){
-    console.log(`In the show finction and this should be the recipe id: ${req.params.recipesId}`);
+    //finds the recipe with the id in the url
     const recipe = await Recipe.findById(req.params.recipesId).populate('ingredientList');
-    console.log(recipe);
+    //renders the show page
     res.render('recipes/show', {title:"Recipe", recipe})
 }
 
@@ -36,31 +36,30 @@ async function create(req, res){
     req.body.ingredientList = req.body.ingredientList.trim();
     //makes an arrray seperated by commas
     req.body.ingredientList = req.body.ingredientList.split(/\s*,\s*/);
-    //console.log(ingList);
-
     const finalList = [];
+    //filters out ingredent that already exist and create those that dont
+    //id is pushed to finalList array and stored in req.body
     for(let j=0; j<req.body.ingredientList.length;j++){
         for(let i=0; i<allingredients.length;i++){
             console.log(`the ingredent at index ${j} is ${req.body.ingredientList[j]} and in the database at index ${i} is ${allingredients[i].name}`);
             if(allingredients[i].name===req.body.ingredientList[j]){
                 finalList.push(allingredients[i]._id);
+                //once pushed needs to leave embedded for loop
                 console.log(finalList)
                 break;
             }
         }
         const newIng = await Ingredient.create({name: req.body.ingredientList[j], foodCategory: 'Misc.'});
         finalList.push(newIng._id);
-        console.log(finalList)
     }
     req.body.ingredientList = finalList;
     req.body.chef = req.user._id;
     const recipe = await Recipe.create(req.body);
-    console.log(`the newly created recipe - ${recipe}`);
-    
+    //redirects to the show page
     try{
         res.redirect(`/recipes/${recipe._id}`);
     }
     catch (err){
-        //res.redirect(`/`);
+        res.redirect(`/`);
     }
 }

@@ -18,7 +18,10 @@
         </tr>
         <tr>
             <th>Ingredient List</th>
-            <td><%= recipe.ingredientList %></td>
+            <td>
+                <ul>
+                    <%- recipe.ingredientList.map(i => `<li>${i.name}</li>`).join('') %>
+                </ul>
         </tr>
         <tr>
             <th>Instruction</th>

@@ -2,6 +2,21 @@
 
 <h2>All Recipes in the Database</h2>
 
-
+<table>
+    <tbody>
+        <thead>
+            <th>Title</th>
+            <th>Cook Time</th>
+            <th>Link</th>
+        </thead>
+        <% recipeList.forEach(r => { %>
+            <tr>
+                <th><%= r.title %></th>
+                <td><%= r.cookTime %></td>
+                <td><a href="/recipes/<%= r._id %>">Details</a></td>
+            </tr>
+            <% }); %>
+    </tbody>
+</table>
 
 <%- include('../partials/footer') %>

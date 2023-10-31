@@ -11,6 +11,7 @@ module.exports = {
 async function index(req, res) {
     //return list of all recipes in database
     const recipeList = await Recipe.find({});
+    console.log(recipeList);
     res.render("recipes/index", {title: "All Recipes" , recipeList});
 }
 
@@ -20,14 +21,14 @@ async function newRecipeForm(req, res){
 }
 
 async function show(req, res){
-    const recipe = await Recipe.findById(req.params).populate('ingredientList');
-    console.log(req.params);
+    const recipe = await Recipe.findById(req.params.id).populate('ingredientList');
+    console.log(`In the show finction and this should be the recipe id: ${req.params.id}`);
     res.render('recipes/show', {title:"Recipe", recipe})
 }
 
 async function create(req, res){
     //all ingredients in the data base name and id
-    const allingredients = await Ingredient.find({},{name: 1, _id:0});
+    const allingredients = await Ingredient.find({},{name: 1, _id:1});
     //make into an array of just names
     //const ingList = allingredients.map(i => i.name);
     //takes off spaces on string of the ingredents
@@ -43,6 +44,7 @@ async function create(req, res){
             if(allingredients[i].name===req.body.ingredientList[j]){
                 finalList.push(allingredients[i]._id);
                 console.log(finalList)
+                break;
             }
         }
         const newIng = await Ingredient.create({name: req.body.ingredientList[j], foodCategory: 'Misc.'});
@@ -51,12 +53,13 @@ async function create(req, res){
     }
     req.body.ingredientList = finalList;
     req.body.chef = req.user._id;
-    console.log(req.body);
+    const recipe = await Recipe.create(req.body);
+    console.log(`the newly created recipe - ${recipe}`);
+    
     try{
-        const recipe = await Recipe.create(req.body);
         res.redirect(`/recipes/${recipe._id}`);
     }
     catch (err){
-        console.log(err.message);
+        //res.redirect(`/`);
     }
 }

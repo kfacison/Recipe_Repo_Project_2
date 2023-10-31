@@ -81,12 +81,15 @@ async function create(req, res){
 }
 
 async function deleteRecipe(req, res){
-    console.log(req.params.recipesId);
     const recipeinfo = await Recipe.findOne({'_id':req.params.recipesId, 'chef': req.user._id});
-    console.log(recipeinfo);
+    console.log(req.user._id);
+    console.log(recipeinfo.chef);
     if (!recipeinfo) return res.redirect(`/recipes/${req.params.recipesId}`);
     if (req.user._id.equals(recipeinfo.chef)){
-        Recipe.findByIdAndDelete(req.params.recipesId);
-        res.redirect('/');
+        //Recipe.findByIdAndDelete(req.params.recipesId);
+        res.redirect('/recipes');
+    }
+    else{
+        res.redirect(`/recipes/${req.params.recipesId}`);
     }
 }

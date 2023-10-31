@@ -20,7 +20,7 @@ async function newRecipeForm(req, res){
 }
 
 async function show(req, res){
-    const recipe = await Recipe.findById(req.params);
+    const recipe = await Recipe.findById(req.params).populate('ingredientList');
     console.log(req.params);
     res.render('recipes/show', {title:"Recipe", recipe})
 }
@@ -39,7 +39,8 @@ async function create(req, res){
     const finalList = [];
     for(let j=0; j<req.body.ingredientList.length;j++){
         for(let i=0; i<allingredients.length;i++){
-            if(allingredients[i].name===j){
+            console.log(`the ingredent at index ${j} is ${req.body.ingredientList[j]} and in the database at index ${i} is ${allingredients[i].name}`);
+            if(allingredients[i].name===req.body.ingredientList[j]){
                 finalList.push(allingredients[i]._id);
                 console.log(finalList)
             }
@@ -56,7 +57,6 @@ async function create(req, res){
         res.redirect(`/recipes/${recipe._id}`);
     }
     catch (err){
-        console.log(err);
-        res.redirect(`/recipes/new`, { errorMsg: err.message });
+        console.log(err.message);
     }
 }

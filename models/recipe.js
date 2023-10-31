@@ -14,10 +14,10 @@ const recipeSchema = new Schema({
         enum: ['Italian','Mexican','Chinese','Indian','Japanese','Thai','French','Greek','Spanish','Korean','Lebanese','Vietnamese','Mediterranean','Brazilian','German','Turkish','Moroccan','Peruvian','Russian','Caribbean','American','Misc.']
     },
     cookTime: Number,
-    ingredientList: {
+    ingredientList: [{
         type: Schema.Types.ObjectId,
         ref: 'ingredient'
-    },
+    }],
     instruction: String,
     chef: {
         type: Schema.Types.ObjectId,

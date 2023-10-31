@@ -9,5 +9,6 @@ router.get('/new', ensureLoggedIn, recipesRouter.new);
 router.get('/:recipesId', ensureLoggedIn, recipesRouter.show);
 router.post('/', ensureLoggedIn, recipesRouter.create);
 router.put('/recipes/:recipesId', ensureLoggedIn, recipesRouter.new);
+router.delete('/recipes/:recipesId', ensureLoggedIn, recipesRouter.delete);
 
 module.exports = router;

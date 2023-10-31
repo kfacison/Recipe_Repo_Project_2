@@ -6,7 +6,8 @@ module.exports = {
     index,
     new: newRecipeForm,
     create,
-    show
+    show,
+    delete: deleteRecipe
 }
 
 async function index(req, res) {
@@ -76,5 +77,16 @@ async function create(req, res){
     }
     catch (err){
         res.redirect(`/`);
+    }
+}
+
+async function deleteRecipe(req, res){
+    console.log(req.params.recipesId);
+    const recipeinfo = await Recipe.findOne({'_id':req.params.recipesId, 'chef': req.user._id});
+    console.log(recipeinfo);
+    if (!recipeinfo) return res.redirect(`/recipes/${req.params.recipesId}`);
+    if (req.user._id.equals(recipeinfo.chef)){
+        Recipe.findByIdAndDelete(req.params.recipesId);
+        res.redirect('/');
     }
 }

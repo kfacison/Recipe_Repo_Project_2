@@ -2,7 +2,26 @@
 
 <h2>All Your Recipes</h2>
 
-<!-- <a href="/recipes/new">Add a New Recipe</a> -->
+<table>
+    <tbody>
+        <thead>
+            <th>Title</th>
+            <th>Cook Time</th>
+            <th>Chef</th>
+            <th>Link</th>
+        </thead>
+        <% if(Cookbook){ %>
+        <% Cookbook.forEach(r => { %>
+            <tr>
+                <th><%= r.title %></th>
+                <td><%= r.cookTime %></td>
+                <td><%= r. chef.name %></td>
+                <td><a href="/recipes/<%= r._id %>">Details</a></td>
+            </tr>
+            <% }); }%>
+    </tbody>
+</table>
+<br>
 <form action="/recipes/new" action="GET">
     <button type="submit">Add a New Recipe</button>
 </form>

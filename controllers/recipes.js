@@ -1,5 +1,6 @@
 const Recipe = require('../models/recipe');
 const Ingredient = require('../models/ingredient');
+const User= require('../models/user');
 
 module.exports = {
     index,
@@ -16,15 +17,21 @@ async function index(req, res) {
 }
 
 async function newRecipeForm(req, res){
-
-    res.render("recipes/new", {title:"New Recipe"})
+    console.log(req.params.recipesId);
+    if(req.params.recipesId){
+        const recipe = await Recipe.findById(req.params.recipesId).populate('ingredientList').populate('chef', 'name');
+        res.render("recipes/new", {title:"New Recipe", recipe})
+    }
+    else{
+        res.render("recipes/new", {title:"New Recipe"})
+    }
 }
 
 async function show(req, res){
     //finds the recipe with the id in the url
     const recipe = await Recipe.findById(req.params.recipesId).populate('ingredientList').populate('chef', 'name');
     //renders the show page
-    console.log(recipe);
+    //console.log(recipe);
     res.render('recipes/show', {title:"Recipe", recipe})
 }
 
@@ -56,6 +63,10 @@ async function create(req, res){
     req.body.ingredientList = finalList;
     req.body.chef = req.user._id;
     const recipe = await Recipe.create(req.body);
+    //add recipe to user cookbook
+    const userCookbook = await User.findById(req.user_id);
+    userCookbook.cookbook.push(recipe._id);
+    await userCookbook.save();
     //redirects to the show page
     try{
         res.redirect(`/recipes/${recipe._id}`);

@@ -18,10 +18,12 @@ async function index(req, res) {
 }
 
 async function newRecipeForm(req, res){
-    //if recipie has id then pass ita info to new page to populate and edit
+    //if recipie has id then pass it's info to new page to populate and edit
+    console.log(req.params);
     if(req.params.recipesId){
         const recipe = await Recipe.findById(req.params.recipesId).populate('ingredientList').populate('chef', 'name');
-        res.render("recipes/new", {title:"New Recipe", recipe})
+        console.log(recipe);
+        res.render("recipes/new", {title:"Edit Recipe", recipe})
     }
     else{
         res.render("recipes/new", {title:"New Recipe"})

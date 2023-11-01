@@ -3,8 +3,13 @@
 <h2>Recipe is in the Oven</h2>
 
 <form action="/recipes" method="POST">
+    
     <label for="title">Title</label>
-    <input type="text" name="title">
+    <input type="text" name="title"
+    <% if(recipe._id){ %>
+        value='<%= recipe.title %>'
+    <% } %>
+    >
     
     <label for="mealType">Type of Meal</label>
     <select name="mealType">
@@ -43,13 +48,21 @@
         <option value="Vietnamese">Vietnamese</option>
     </select>
     <label for="cookTime">Time to Cook (mins)</label>
-    <input type="number" name="cookTime">
+    <input type="number" name="cookTime"
+    <% if(recipe._id){ %>
+        value='<%= recipe.cookTime %>'
+    <% } %>
+    >
 
     <label for="ingredientList">Ingredient List (use ", " to seperate items)</label>
     <input type="text" name="ingredientList">
 
     <label for="instruction">Instruction (include Messurements here)</label>
-    <input type="text" name="instruction"> 
+    <input type="text" name="instruction"
+    <% if(recipe._id){ %>
+        value='<%= recipe.instruction %>'
+    <% } %>
+    > 
     <button type="submit">ALL DONE</button>
 </form>
 

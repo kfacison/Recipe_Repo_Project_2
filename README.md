@@ -19,15 +19,16 @@ A  Repository for all your recipies. Add all your favorite recipes to your cookb
 | HTTP METHOD (_Verb_) | URL (_Nouns_)                                | CRUD   | Response                                                  | Notes                        |
 | -------------------- | -------------------------------------------- | ------ | --------------------------------------------------------- | ---------------------------- |
 | `users`              |                                              |        |                                                           |                              |
-| GET                  | /users/:userid                               | READ   | display user cookbook with userId                         |                              |
+| GET                  | /users/user:id                               | READ   | display user cookbook with userId                         |                              |
 | GET                  | /auth2callback                               | R/C    | login or add user to database after google oauth          |                              |
 | PUT/PATCH            | /users/:userId/recipes/:recipeId             | UPDATE | link recipe with recipeId to user with userId             | add recipe to cookbook       |
 | `recipes`            |                                              |        |                                                           |                              |
 | GET                  | /recipes                                     | READ   | displays array of all recipes                             |                              |
 | GET                  | /recipes/:recipesId                          | READ   | display a single recipe with recipesId                    |                              |
-| GET                  | /recipes/new                                 | READ   | display new recipe view                                   |                              |
-| POST                 | /recipes                                     | CREATE | create new recipe                                         | create/update uses same view |
-| PUT/PATCH            | /recipes/:recipesId                          | UPDATE | update user with recipesId                                | create/update uses same view |
+| GET                  | /recipes/new                                 | CREATE | display new recipe view                                   | create/update uses same view |
+| POST                 | /recipes                                     | CREATE | create new recipe                                         |                              |
+| GET                  | /recipes/:recipesId/edit                     | UPDATE | display new recipe view populated with recipe info        | create/update uses same view |
+| PUT/PATCH            | /recipes/:recipesId                          | UPDATE | update user with recipesId                                |                              |
 | PUT/PATCH            | /recipes/:recipeId/ingredients/:ingredientId | UPDATE | link ingredient with ingredientId to recipe with recipeId |                              |
 | DELETE               | /recipes/:recipesId                          | DELETE | delete user with recipesId                                |                              |
 | `ingredients`        |                                              |        |                                                           |                              |
@@ -54,12 +55,12 @@ A  Repository for all your recipies. Add all your favorite recipes to your cookb
 
 ## MVP Checklist
 * user signs in and out
-* user sees list of all their recipes (cookbook)
-* user see a recipe
+* user can see all recipes in database
 * user CRUDs recipes
+* user see a recipe details
+* user sees all their recipes (cookbook)
 * user can favorite recipes (add to cookbook)
 * user CR ingredients
-* user can see all recipes in database
 
 ## Stretch Goals
 * user CRUD comments on recipie

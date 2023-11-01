@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const indexRouter = require("../controllers/index.js")
+const indexRouter = require("../controllers/users.js")
 
 router.get('/', indexRouter.index);
 

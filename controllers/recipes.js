@@ -86,7 +86,7 @@ async function deleteRecipe(req, res){
     console.log(recipeinfo.chef);
     if (!recipeinfo) return res.redirect(`/recipes/${req.params.recipesId}`);
     if (req.user._id.equals(recipeinfo.chef)){
-        //Recipe.findByIdAndDelete(req.params.recipesId);
+        await Recipe.findByIdAndDelete(req.params.recipesId);
         res.redirect('/recipes');
     }
     else{

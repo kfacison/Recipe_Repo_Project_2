@@ -7,7 +7,8 @@ module.exports = {
     new: newRecipeForm,
     create,
     show,
-    delete: deleteRecipe
+    delete: deleteRecipe,
+    update
 }
 
 async function index(req, res) {
@@ -26,7 +27,7 @@ async function newRecipeForm(req, res){
         res.render("recipes/new", {title:"Edit Recipe", recipe})
     }
     else{
-        res.render("recipes/new", {title:"New Recipe"})
+        res.render("recipes/new", {title:"New Recipe", recipe: false})
     }
 }
 
@@ -40,8 +41,6 @@ async function show(req, res){
 async function create(req, res){
     //all ingredients in the data base name and id
     const allingredients = await Ingredient.find({},{name: 1, _id:1});
-    //make into an array of just names
-    //const ingList = allingredients.map(i => i.name);
     //takes off spaces on string of the ingredents
     req.body.ingredientList = req.body.ingredientList.trim();
     //makes an arrray seperated by commas
@@ -92,5 +91,43 @@ async function deleteRecipe(req, res){
     }
     else{
         res.redirect(`/recipes/${req.params.recipesId}`);
+    }
+}
+
+async function update(req, res){
+    const allingredients = await Ingredient.find({},{name: 1, _id:1});
+    //takes off spaces on string of the ingredents
+    req.body.ingredientList = req.body.ingredientList.trim();
+    //makes an arrray seperated by commas
+    req.body.ingredientList = req.body.ingredientList.split(/\s*,\s*/);
+    const finalList = [];
+    //filters out ingredent that already exist and create those that dont
+    //id is pushed to finalList array and stored in req.body
+    for(let j=0; j<req.body.ingredientList.length;j++){
+        let wasFound = false;
+        for(let i=0; i<allingredients.length;i++){
+            //loops through the ingredentList and see if it already exists
+            if(allingredients[i].name===req.body.ingredientList[j]){
+                //pushes to temp array and set wasFound to true
+                finalList.push(allingredients[i]._id);
+                wasFound = true
+            }
+        }
+        //if wasFound is false aka does not exist in collection then is created
+        if(wasFound===false){
+            const newIng = await Ingredient.create({name: req.body.ingredientList[j], foodCategory: 'Misc.'});
+            //pushes to temp array
+            finalList.push(newIng._id);
+        }
+    }
+    req.body.ingredientList = finalList;
+    
+    const newRecipe = await Recipe.findOneAndUpdate({'_id':req.params.recipesId, 'chef': req.user._id}, req.body);
+    
+    try{
+        res.redirect(`/recipes/${req.params.recipesId}`);
+    }
+    catch (err){
+        res.redirect(`/`);
     }
 }

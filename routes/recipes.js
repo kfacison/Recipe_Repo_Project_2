@@ -15,7 +15,7 @@ router.post('/', ensureLoggedIn, recipesRouter.create);
 //new recipe page to make edits
 router.get('/:recipesId/edit', ensureLoggedIn, recipesRouter.new);
 //update recipe
-//router.put('/:recipesId', ensureLoggedIn, recipesRouter.update);
+router.put('/:recipesId', ensureLoggedIn, recipesRouter.update);
 //delete recipie
 router.delete('/:recipesId', ensureLoggedIn, recipesRouter.delete);
 

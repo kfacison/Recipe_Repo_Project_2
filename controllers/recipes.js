@@ -18,7 +18,7 @@ async function index(req, res) {
 }
 
 async function newRecipeForm(req, res){
-    //console.log(req.params.recipesId);
+    //if recipie has id then pass ita info to new page to populate and edit
     if(req.params.recipesId){
         const recipe = await Recipe.findById(req.params.recipesId).populate('ingredientList').populate('chef', 'name');
         res.render("recipes/new", {title:"New Recipe", recipe})
@@ -32,7 +32,6 @@ async function show(req, res){
     //finds the recipe with the id in the url
     const recipe = await Recipe.findById(req.params.recipesId).populate('ingredientList').populate('chef', 'name');
     //renders the show page
-    //console.log(recipe);
     res.render('recipes/show', {title:"Recipe", recipe})
 }
 
@@ -51,19 +50,18 @@ async function create(req, res){
     for(let j=0; j<req.body.ingredientList.length;j++){
         let wasFound = false;
         for(let i=0; i<allingredients.length;i++){
-            console.log(`the ingredent at index ${j} is ${req.body.ingredientList[j]} and in the database at index ${i} is ${allingredients[i].name}`);
+            //loops through the ingredentList and see if it already exists
             if(allingredients[i].name===req.body.ingredientList[j]){
+                //pushes to temp array and set wasFound to true
                 finalList.push(allingredients[i]._id);
-                //once pushed needs to leave embedded for loop
-                console.log(finalList)
                 wasFound = true
             }
         }
-        console.log('outside the emebeded for loop');
+        //if wasFound is false aka does not exist in collection then is created
         if(wasFound===false){
         const newIng = await Ingredient.create({name: req.body.ingredientList[j], foodCategory: 'Misc.'});
+        //pushes to temp array
         finalList.push(newIng._id);
-        console.log("could not find this ingredent is in database, so was created");
         }
     }
     req.body.ingredientList = finalList;
@@ -71,7 +69,6 @@ async function create(req, res){
     const recipe = await Recipe.create(req.body);
     //add recipe to user cookbook
     const userCookbook = await User.findById(req.user._id);
-    //console.log(userCookbook);
     userCookbook.cookbook.push(recipe._id);
     await userCookbook.save();
     //redirects to the show page
@@ -85,8 +82,7 @@ async function create(req, res){
 
 async function deleteRecipe(req, res){
     const recipeinfo = await Recipe.findOne({'_id':req.params.recipesId, 'chef': req.user._id});
-    console.log(req.user._id);
-    console.log(recipeinfo.chef);
+    //removes recipie from recipe colection
     if (!recipeinfo) return res.redirect(`/recipes/${req.params.recipesId}`);
     if (req.user._id.equals(recipeinfo.chef)){
         await Recipe.findByIdAndDelete(req.params.recipesId);

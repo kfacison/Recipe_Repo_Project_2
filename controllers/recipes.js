@@ -18,7 +18,7 @@ async function index(req, res) {
 }
 
 async function newRecipeForm(req, res){
-    console.log(req.params.recipesId);
+    //console.log(req.params.recipesId);
     if(req.params.recipesId){
         const recipe = await Recipe.findById(req.params.recipesId).populate('ingredientList').populate('chef', 'name');
         res.render("recipes/new", {title:"New Recipe", recipe})
@@ -49,26 +49,29 @@ async function create(req, res){
     //filters out ingredent that already exist and create those that dont
     //id is pushed to finalList array and stored in req.body
     for(let j=0; j<req.body.ingredientList.length;j++){
+        let wasFound = false;
         for(let i=0; i<allingredients.length;i++){
             console.log(`the ingredent at index ${j} is ${req.body.ingredientList[j]} and in the database at index ${i} is ${allingredients[i].name}`);
             if(allingredients[i].name===req.body.ingredientList[j]){
                 finalList.push(allingredients[i]._id);
                 //once pushed needs to leave embedded for loop
                 console.log(finalList)
-                break;
+                wasFound = true
             }
         }
         console.log('outside the emebeded for loop');
+        if(wasFound===false){
         const newIng = await Ingredient.create({name: req.body.ingredientList[j], foodCategory: 'Misc.'});
         finalList.push(newIng._id);
-        console.log("should not see this is ingredent is in database");
+        console.log("could not find this ingredent is in database, so was created");
+        }
     }
     req.body.ingredientList = finalList;
     req.body.chef = req.user._id;
     const recipe = await Recipe.create(req.body);
     //add recipe to user cookbook
     const userCookbook = await User.findById(req.user._id);
-    console.log(userCookbook);
+    //console.log(userCookbook);
     userCookbook.cookbook.push(recipe._id);
     await userCookbook.save();
     //redirects to the show page

@@ -1,7 +1,6 @@
 <%- include('../partials/header') %>
 
-<h2>Recipe is in the Oven</h2>
-
+<h4>Recipe is in the Oven</h4>
 <form 
 <% if(recipe){ %>
     action="/recipes/<%= recipe._id %>?_method=PUT" method="POST"
@@ -9,14 +8,16 @@
     action="/recipes" method="POST"
 <% } %>
 >
-    <label for="title">Title</label>
+<br>    
+<label for="title">Title</label><br>
     <input type="text" name="title"
     <% if(recipe){ %>
         value='<%= recipe.title %>'
     <% } %>
     >
-    
-    <label for="mealType">Type of Meal</label>
+    <br>
+    <br>
+    <label for="mealType">Type of Meal</label><br>
     <select name="mealType">
         <% if(recipe){ %>
             <option value="<%= recipe.mealType %>" selected disabled hidden><%= recipe.mealType %></option>
@@ -29,8 +30,9 @@
         <option value="Snack">Snack</option>
         <option value="Misc.">Misc.</option>
     </select>
-    
-    <label for="cuisineType">Type of Cuisine</label>
+    <br>
+    <br>
+    <label for="cuisineType">Type of Cuisine</label><br>
     <select name="cuisineType">
         <% if(recipe){ %>
             <option value="<%= recipe.cuisineType %>" selected disabled hidden><%= recipe.cuisineType %></option>
@@ -60,28 +62,32 @@
         <option value="Turkish">Turkish</option>
         <option value="Vietnamese">Vietnamese</option>
     </select>
-
-    <label for="cookTime">Time to Cook (mins)</label>
+    <br>
+    <br>
+    <label for="cookTime">Time to Cook (mins)</label><br>
     <input type="number" name="cookTime"
     <% if(recipe){ %>
         value='<%= recipe.cookTime %>'
     <% } %>
     >
-
-    <label for="ingredientList">Ingredient List (use commas to seperate items)</label>
+    <br>
+    <br>
+    <label for="ingredientList">Ingredient List (use commas to seperate items)</label><br>
     <input type="text" name="ingredientList"
     <% if(recipe){ %>
         value='<%= recipe.ingredientList.map(i => { return i.name }).toString(); %>'
     <% } %>
     >
-
-    <label for="instruction">Instruction (include Messurements here)</label>
+    <br>
+    <br>
+    <label for="instruction">Instruction (include Messurements here)</label><br>
     <input type="text" name="instruction"
     <% if(recipe){ %>
         value='<%= recipe.instruction %>'
     <% } %>
     >
-    
+    <br>
+    <br>
     <button type="submit">ALL DONE</button>
 </form>
 

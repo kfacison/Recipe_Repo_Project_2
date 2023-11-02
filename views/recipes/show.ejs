@@ -1,35 +1,32 @@
 <%- include('../partials/header') %>
 
 <h2><%= recipe.title %></h2>
+    <div>
+        <h4>Type of Meal</h4><br>
+        <p><%= recipe.mealType %></p>
+    </div>
+    
+    <div>
+        <h4>Type of Cuisine</h4><br>
+        <p><%= recipe.cuisineType %></p>
+    </div>
 
-<table>
-    <tbody>
-        <tr>
-            <th>Type of Meal</th>
-            <td><%= recipe.mealType %></td>
-        </tr>
-        <tr>
-            <th>Type of Cuisine</th>
-            <td><%= recipe.cuisineType %></td>
-        </tr>
-        <tr>
-            <th>Time to Cook</th>
-            <td><%= recipe.cookTime %> mins</td>
-        </tr>
-        <tr>
-            <th>Ingredient List</th>
-            <td>
-                <ul>
-                    <%- recipe.ingredientList.map(i => `<li>${i.name}</li>`).join('') %>
-                </ul>
-        </tr>
-        <tr>
-            <th>Instruction</th>
-            <td><%= recipe.instruction %></td>
-        </tr>
-    </tbody>
-</table>
+    <div>
+        <h4>Time to Cook</h4><br>
+        <p><%= recipe.cookTime %> mins</p>
+    </div>
 
+    <div>
+        <h4>Ingredient List</h4><br>
+                <%- recipe.ingredientList.map(i => `<p>${i.name}</p><br>`).join('') %>
+    </div>
+
+    <div>
+        <h4>Instruction</h4><br>
+        <p><%= recipe.instruction %></p>
+        
+    </div>
+<br>
 <% if(user?._id.equals(recipe.chef._id)){ %>
     <form action="/recipes/<%= recipe._id %>/edit" action="GET">
         <button type="submit">Edit Recipe</button>

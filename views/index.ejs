@@ -1,14 +1,11 @@
 <%- include('./partials/header') %>
 
-<h2>Recipe Repository</h2>
+<h3>Recipe Repository</h3>
 
 <% if (!user) { %>
 	<p>please login to continue</p>
 <% } else { %>
-	<p>Welcome, <%= user.name %> <%= user.email %></p>
-	<% if (user.avatar) { %>
-		<img src="<%= user.avatar %>" alt="<%= user.name %>'s avatar" />
-	<% } %>
+	<p>Welcome, <%= user.name %> to Recipe Repo</p>
 <% } %>
-
+<p>A Repository for all your recipies. Add all your favorite recipes to your cookbook and veiw other users recipes.</p>
 <%- include('./partials/footer') %>

@@ -10,7 +10,7 @@
 >
 <br>    
 <label for="title">Title</label><br>
-    <input type="text" name="title"
+    <input type="text" name="title" id=""
     <% if(recipe){ %>
         value='<%= recipe.title %>'
     <% } %>
@@ -88,7 +88,7 @@
     >
     <br>
     <br>
-    <button type="submit">ALL DONE</button>
+    <button type="submit">All Done</button>
 </form>
 
 <%- include('../partials/footer') %>

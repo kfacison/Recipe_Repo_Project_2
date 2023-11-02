@@ -24,6 +24,13 @@ table {
 }
 thead{
     background-color: #BAA2D6;
+    /* border-bottom: 2px solid black; */
+}
+table, th, td {
+    border-collapse: collapse;
+}
+tbody>tr{
+    border-top: 2px solid black;
 }
 
 table {
@@ -35,6 +42,7 @@ table td, table th {
 }
 table tbody td {
     font-size: 13px;
+    border-left: 2px solid black;
 }
 table thead {
     background: #BAA2D6;
@@ -49,4 +57,32 @@ div{
 }
 div>*{
     display: inline;
+}
+
+button {
+	background-color:#BAA2D6;
+	border-radius:20px;
+	border:2px solid #E5ADD7;
+	display:inline-block;
+	color:white;
+	font-size:17px;
+	padding:14px 29px;
+	text-decoration:none;
+}
+button:hover {
+	background-color:#E5ADD7;
+}
+button:active {
+	position:relative;
+	top:1px;
+}
+
+input {
+    padding: 15px;
+    font-size: 16px;
+    color: black;
+    border: 1px solid black;
+}
+input:focus {
+    outline:none;
 }

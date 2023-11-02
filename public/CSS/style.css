@@ -17,7 +17,32 @@ body > nav {
     display: flex;
     justify-content: space-around;
 }
+a{
+text-decoration: none;
+color: #4B4453;
+}
+a:hover{
+    background-color: #BAA2D6;
+    text-decoration: underline;
+}
+nav>a{
+    margin: 10px;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: default;
 
+}
+nav>a:hover{
+    color: white;
+    background-color: #8D5FD3;
+    text-decoration: none;
+}
+nav>a:active {
+	position:relative;
+	top:1px;
+}
 table {
     margin-left: auto;
     margin-right: auto;
@@ -62,7 +87,7 @@ div>*{
 button {
 	background-color:#BAA2D6;
 	border-radius:20px;
-	border:2px solid #E5ADD7;
+	border:none;
 	display:inline-block;
 	color:white;
 	font-size:17px;
@@ -70,19 +95,21 @@ button {
 	text-decoration:none;
 }
 button:hover {
-	background-color:#E5ADD7;
+	background-color:#8D5FD3;
 }
 button:active {
 	position:relative;
 	top:1px;
 }
-
+select{
+    border: 1px solid black;
+    border-radius: 2px;
+}
 input {
-    padding: 15px;
+    cursor: text;
+    padding: 1%;
     font-size: 16px;
     color: black;
     border: 1px solid black;
-}
-input:focus {
-    outline:none;
+    border-radius: 2px;
 }

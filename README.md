@@ -3,15 +3,13 @@ Recipe Repo is a user-friendly app designed to serve as a comprehensive reposito
 
 Key Features:
 
-* Personal Cookbook: Create your own digital cookbook by adding and organizing your favorite recipes. Store recipes from various sources, including family traditions, cookbooks, online blogs, and more.
+* Personal Cookbook: Create your own digital cookbook by adding and editing your favorite recipes. Store recipes from various sources, including family traditions, cookbooks, online blogs, and more.
 
-* User-Friendly Interface: Recipe Repo offers an intuitive and user-friendly interface, making it easy to browse, search, and manage your recipe collection. Effortlessly navigate through categories, or search by ingredients to find the perfect recipe for any occasion.
+* User-Friendly Interface: Recipe Repo offers an intuitive and user-friendly interface, making it easy to browse, and manage your recipe collection. 
 
-* Secure Login with Google Account: Conveniently access Recipe Repo by logging in with your Google account. This ensures a seamless and secure experience, allowing you to save and access your recipes across multiple devices.
+* Secure Login with Google Account: Conveniently access Recipe Repo by logging in with your Google account. This ensures a seamless and secure experience.
 
-* Social Sharing: Share your favorite recipes with others and contribute to the Recipe Repo community. Inspire fellow food lovers with your culinary creations and engage in discussions about cooking tips, ingredient substitutions, and more.
-
-Whether you're a seasoned chef, a home cook, or a culinary enthusiast, Recipe Repo is your go-to app for organizing, discovering, and sharing recipes. Simplify your cooking journey, connect with like-minded food lovers, and unlock a world of culinary delights with Recipe Repo.
+Whether you're a seasoned chef, a home cook, or a culinary enthusiast, Recipe Repo is your go-to app for organizin and discovering recipes. Simplify your cooking journey, and unlock a world of culinary delights with Recipe Repo.
 
 ## Tech Being Used
 * HTML

@@ -11,6 +11,8 @@ Key Features:
 
 Whether you're a seasoned chef, a home cook, or a culinary enthusiast, Recipe Repo is your go-to app for organizin and discovering recipes. Simplify your cooking journey, and unlock a world of culinary delights with Recipe Repo.
 
+Visit site [here](https://reciperepo-4c11628bb5b7.herokuapp.com/)
+
 ## Tech Being Used
 * HTML
 * CSS
